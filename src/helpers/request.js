@@ -20,16 +20,14 @@ export default function request(url, method = 'get', data = {}) {
 
         axios(options).then(
             res => {
-                console.log('成功')
-                resolve(res.data)
-            },
-            res => {
-                console.log('失败')
-                Message.error(res.msg)
-                reject(res.msg)
-            }
-        ).catch(
-            res => Message.error(res.msg)
-        )
+                if (res.data.status === 'ok') {
+                    resolve(res.data)
+                    Message.success(res.data.msg)
+                } else {
+                    console.log('失败')
+                    Message.error(res.data.msg)
+                    reject(res.msg)
+                }
+            }).catch(res => Message.error(res.msg))
     })
 }
