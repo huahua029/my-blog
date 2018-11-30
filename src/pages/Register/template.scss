@@ -1,0 +1,23 @@
+.rigster {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    margin-left: 30%;
+    margin-right: 30%;
+    .el-input {
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    .el-button {
+        align-self: flex-start;
+        color: #009933;
+    }
+    p {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: center;
+        span {
+            color: #009933;
+        }
+    }
+}

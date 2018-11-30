@@ -1,0 +1,15 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    h1 {
+        text-align: center;
+    }
+    .el-textarea {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+    .el-button {
+        align-self: flex-start;
+        margin-bottom: 50px;
+    }
+}
