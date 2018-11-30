@@ -11,6 +11,13 @@
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+
+// API测试
+import blog from '@/api/blog.js'
+import auth from '@/api/auth.js'
+window.auth = auth
+window.blog = blog
+
 export default {
   components: {
     Header,

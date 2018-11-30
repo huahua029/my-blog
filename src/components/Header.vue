@@ -21,6 +21,8 @@
     </section>
   </div>
 </template>
+
+
 <style lang="scss" scoped>
 
 #noLogin{
