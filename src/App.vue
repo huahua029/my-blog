@@ -28,7 +28,9 @@ export default {
 
 <style lang="scss">
 @import "@/assets/base.scss";
-
+a {
+    color: inherit;
+}
 #app{
   display: grid;
   grid-template-columns: 12% auto 12%;

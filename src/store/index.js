@@ -28,11 +28,10 @@ export default new Vuex.Store({
                     })
         },
         register({ commit }, { username, password }) {
-            return auth.register({ uername, password }).then(
+            return auth.register({ username, password }).then(
                 res => {
                     commit('setLogin', { isLogin: true })
                     commit('setUser', res.data)
-                    return res
                 })
         },
         logout({ commit }) {
@@ -44,15 +43,13 @@ export default new Vuex.Store({
             )
         },
         checkLogin({ commit }) {
-            if (state.isLogin) {
+            if (this.state.isLogin) {
                 return
             } else {
                 auth.isLogin().then(res => {
                     if (res.isLogin === true) {
                         commit('setLogin', { isLogin: true })
                         commit('setUser', res.data)
-                    } else {
-                        return
                     }
                 })
             }

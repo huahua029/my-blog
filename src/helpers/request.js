@@ -22,12 +22,11 @@ export default function request(url, method = 'get', data = {}) {
             res => {
                 if (res.data.status === 'ok') {
                     resolve(res.data)
-                    Message.success(res.data.msg)
                 } else {
-                    console.log('失败')
                     Message.error(res.data.msg)
-                    reject(res.msg)
+                    reject(res.data)
                 }
-            }).catch(res => Message.error(res.msg))
+            }).catch(
+            err => Message.error('网络异常'))
     })
 }

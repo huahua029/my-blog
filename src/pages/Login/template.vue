@@ -6,7 +6,7 @@
     <el-input v-model="password" placeholder="密码"></el-input>    
 
     <el-button @click="onLogin">立即登录</el-button>
-    <p>没有账号？<span>注册新用户</span></p>
+    <p>没有账号？<span><router-link to="/register">注册新用户</router-link></span></p>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store/index'
 import Index from './pages/Index/template.vue'
 import Register from './pages/Register/template.vue'
 import Login from './pages/Login/template.vue'
@@ -11,7 +12,7 @@ import Detail from './pages/Detail/template.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
@@ -20,7 +21,7 @@ export default new Router({
         },
         {
             path: '/login',
-            component: Login
+            component: Login,
         },
         {
             path: '/register',
@@ -48,3 +49,24 @@ export default new Router({
         }
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        store.dispatch('checkLogin').then(
+            isLogin => {
+                if (!isLogin) {
+                    next({
+                        path: '/login',
+                        query: { redirect: to.fullPath }
+                    })
+                } else {
+                    next()
+                }
+            }
+        )
+    } else {
+        next()
+    }
+})
+
+export default router

@@ -1,27 +1,59 @@
 <template>
   <div>
-    <section id="noLogin" v-show="false">
+    <section id="noLogin" v-if="!isLogin">
       <h1>LET'S SHARE</h1>
       <p>精品博客汇聚</p>
       <div>
-        <el-button  plain>立即登录</el-button>
-        <el-button  plain>注册账号</el-button>
+        <el-button  plain>
+          <router-link to="/login"> 
+            立即登录
+          </router-link>     
+        </el-button>
+        <el-button  plain>
+          <router-link to="/register">              
+            注册账号
+          </router-link>                      
+        </el-button>
       </div>
     </section>
-    <section class="login">
+    <section class="login"  v-else>
       <h1>LET'S SHARE</h1>
-      <i class="el-icon-edit"></i>
+      <router-link to="edit"> 
+        <i class="el-icon-edit"></i>
+      </router-link>
       <figure>
-        <img src="http://cn.gravatar.com/avatar/1?s=128&d=identicon">        
+        <img :src="user.avatar">        
         <ul class="msg">
-          <li> 我的主页 </li>
-          <li> 注销登录 </li>
+          <li>我的</li>
+          <li @click="onLogout">注销</li>
         </ul>
       </figure>      
     </section>
   </div>
 </template>
 
+<script>
+import {mapState,mapActions} from 'vuex'
+
+export default {
+  data(){
+    return {
+    }
+  },
+  computed:{
+    ...mapState(['isLogin','user'])    
+  },
+  created(){
+    this.checkLogin()
+  },
+  methods:{
+    ...mapActions(['checkLogin','logout']),
+    onLogout(){
+      this.logout()
+    } 
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 
@@ -80,4 +112,3 @@
 }
 
 </style>
-

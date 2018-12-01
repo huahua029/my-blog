@@ -11,7 +11,10 @@ export default {
         ...mapActions(['login']),
         onLogin() {
             this.login({ username: this.username, password: this.password })
-                .then()
+                .then(
+                    res => this.$router.push('/'),
+                    res => this.$router.push('/login')
+                )
         }
 
     }
