@@ -1,7 +1,11 @@
 <template>
   <div>
     <section id="noLogin" v-if="!isLogin">
-      <h1>LET'S SHARE</h1>
+      <h1>
+        <router-link to="/">
+          LET'S SHARE
+        </router-link>
+      </h1>
       <p>精品博客汇聚</p>
       <div>
         <el-button  plain>
@@ -17,14 +21,22 @@
       </div>
     </section>
     <section class="login"  v-else>
-      <h1>LET'S SHARE</h1>
-      <router-link to="edit"> 
+      <h1>
+        <router-link to="/">
+          LET'S SHARE
+        </router-link>
+      </h1>
+      <router-link to="/create"> 
         <i class="el-icon-edit"></i>
       </router-link>
       <figure>
         <img :src="user.avatar">        
         <ul class="msg">
-          <li>我的</li>
+          <li>
+            <router-link to="/my">
+              我的
+            </router-link>
+          </li>
           <li @click="onLogout">注销</li>
         </ul>
       </figure>      
@@ -43,7 +55,7 @@ export default {
   computed:{
     ...mapState(['isLogin','user'])    
   },
-  created(){
+  created:function(){
     this.checkLogin()
   },
   methods:{
@@ -62,7 +74,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
   color: white;
   h1{
     margin-top: 80px;
@@ -82,10 +93,13 @@ export default {
   display: flex;
   align-items: center;
   color: white;
+  a{
+    color: inherit;
+  }
   h1{
     flex: 15;
   }
-  i{
+  >a{
     flex:1;
     font-size: 25px;
   }
@@ -103,6 +117,7 @@ export default {
       color: #000;
       li{
         padding: 4px 0;
+        cursor:pointer;
       }
     }
     &:hover ul{

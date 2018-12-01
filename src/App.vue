@@ -12,12 +12,6 @@
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
-// API测试
-import blog from '@/api/blog.js'
-import auth from '@/api/auth.js'
-window.auth = auth
-window.blog = blog
-
 export default {
   components: {
     Header,
@@ -28,25 +22,49 @@ export default {
 
 <style lang="scss">
 @import "@/assets/base.scss";
-a {
-    color: inherit;
+a{
+  text-decoration: none;
+  color: inherit;
 }
+html,
+body,
+#app {
+    height: 100vh;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+ul{
+  list-style: none;
+}
+
 #app{
   display: grid;
   grid-template-columns: 12% auto 12%;
   grid-template-rows: auto 1fr auto;
   #Header{
     grid-column: 1 / 4;
+    grid-row: 1 / 2;
     background: $theme;
     padding-right: 12%;
     padding-left: 12%;    
   }
   #main{
     margin-top: 40px;
+    grid-row: 2 / 3;    
     grid-column: 2 / 3;
   }
   #Footer{
     grid-column: 1 / 4;
+    grid-row: 3 / 4;    
     color: $FontColor;
     background: $footerbg;
     padding-right: 12%;

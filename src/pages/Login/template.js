@@ -12,8 +12,7 @@ export default {
         onLogin() {
             this.login({ username: this.username, password: this.password })
                 .then(
-                    res => this.$router.push('/'),
-                    res => this.$router.push('/login')
+                    this.$router.push({ path: this.$route.query.redirect || '/' })
                 )
         }
 

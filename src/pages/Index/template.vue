@@ -1,14 +1,25 @@
 <template>
   <div class="index">
-    <div class="wrap">
+    <div class="wrap" v-for="blog in blogs" :key='blog.id'>
       <figure>
-      <img src="http://cn.gravatar.com/avatar/1?s=128&d=identicon">
-      <figcaption>huahua</figcaption>
-    </figure>
-    <p class="title">前端异步大揭秘 <span>3天前</span> </p>
-    <p class="description">本文以一个简单的文件读写为例，讲解了异步的不同写法，包括 普通的 callback、ES2016中的Promise和Generator、 Node 用于解决回调的co 模块、ES2017中的async/await。适合初步接触 Node.js以及少量 ES6语法的同学阅读...</p>
+        <router-link :to="`/user/${blog.user.id}`">
+          <img :src="blog.user.avatar">
+        </router-link>
+        <figcaption>{{blog.user.username}}</figcaption>
+      </figure>
+      <router-link :to="`/detail/${blog.id}`">      
+        <h3 class="title">{{blog.title}} <span>{{blog.createdAt | formatDate}}</span> </h3>
+        <p class="description">{{blog.description}}</p>
+      </router-link>
     </div>
+    <el-pagination
+      layout="prev, pager, next"
+      :total="total"
+      :current-page.sync="page"
+      @current-change="change">
+    </el-pagination>
   </div>
 </template>
+<script src="./template.js"></script>
 <style lang="scss" scoped src="./template.scss"></style>
 

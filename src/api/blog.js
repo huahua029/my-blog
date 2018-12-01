@@ -13,7 +13,7 @@ export default {
         return request(URL.BLOGLIST, 'GET', { page, userId })
     },
     getIndexBlogList({ page = 1 } = { page: 1 }) {
-        return this.getBlogList({ page: 1 })
+        return this.getBlogList({ page })
     },
     getUserBlogList(userId, { page = 1 } = { page: 1 }) {
         return this.getBlogList({ userId, page })
